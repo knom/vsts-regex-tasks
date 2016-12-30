@@ -1,0 +1,74 @@
+{
+  "manifestVersion": 1,
+  "id": "regexreplace-task",
+  "name": "RegexReplace Build Task",
+  "version": "1.0.11",
+  "publisher": "knom",
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "description": "A task for replacing REGULAR EXPRESSIONS in your files with variables and text in build and release pipelines.",
+  "public": true,
+  "categories": [
+    "Build and release"
+  ],
+  "tags": [
+    "regex",
+    "regular expressions",
+    "regular expression",
+    "replace",
+    "token"
+  ],
+  "icons": {
+    "default": "extension-icon.png"
+  },
+  "files": [
+    {
+      "path": "RegexReplace"
+    }
+  ],
+  "screenshots": [
+    
+  ],
+  "content": {
+   
+  },
+  "links": {
+    "home": {
+      "uri": "https://github.com/knom/vsts-regex-tasks"
+    },
+    "getstarted": {
+      "uri": "https://github.com/knom/vsts-regex-tasks/blob/master/README.md"
+    },
+    "learn": {
+      "uri": "https://github.com/knom/vsts-regex-tasks/blob/master/README.md"
+    },
+    "support": {
+      "uri": "https://github.com/knom/vsts-regex-tasks/issues"
+    },
+    "repository": {
+      "uri": "https://github.com/knom/vsts-regex-tasks"
+    },
+    "issues": {
+      "uri": "https://github.com/knom/vsts-regex-tasks/issues"
+    }
+  },
+  "branding": {
+    "color": "rgb(247, 99, 12)",
+    "theme": "light"
+  },
+  "contributions": [
+    {
+      "id": "regex-replace",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "RegexReplace"
+      }
+    }
+  ]
+}

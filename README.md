@@ -1,6 +1,10 @@
 # RegexReplace Build/Release Task #
 A task for replacing REGULAR EXPRESSIONS in your files with variables and text in build and release pipelines.
 
+## Supported Platforms ##
+* Visual Studio Team Services
+* Team Foundation Server 2015 Update 3 and higher ([How to install extensions in TFS](https://www.visualstudio.com/en-us/docs/marketplace/get-tfs-extensions))
+
 ## Usage ##
 The extension installs the follow task:
 

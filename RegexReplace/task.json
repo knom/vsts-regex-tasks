@@ -3,7 +3,7 @@
   "name": "RegexReplace",
   "friendlyName": "RegEx Find & Replace",
   "description": "Find & Replace using Regular Expressions",
-  "helpMarkDown": "[More Information](https://github.com/knom/vsts-tasks/)",
+  "helpMarkDown": "[More Information](https://github.com/knom/vsts-regex-tasks/)",
   "category": "Utility",
   "visibility": [
     "Build", 

@@ -2,7 +2,7 @@
   "manifestVersion": 1,
   "id": "regexreplace-task",
   "name": "RegexReplace Build Task",
-  "version": "2.1.0",
+  "version": "1.0.11",
   "publisher": "knom",
   "targets": [
     {

@@ -1,4 +1,4 @@
-# RegexReplace Build/Release Task ![Build Status](https://knom.visualstudio.com/_apis/public/build/definitions/969cb309-5d7f-427d-b48a-43eeac3c4aaf/21/badge)
+# RegexReplace Build/Release Task ![Build Status](https://knom-msft.visualstudio.com/_apis/public/build/definitions/9d8fcb7c-6c11-4014-9dc2-7966c94af2b2/5/badge)
 A task for replacing REGULAR EXPRESSIONS in your files with variables and text in build and release pipelines.
 
 ## Supported Platforms ##

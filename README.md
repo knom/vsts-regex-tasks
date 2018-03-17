@@ -19,7 +19,6 @@ The extension installs the follow task:
     * Search Path to Input Files: 
         * The search pattern to the files that should used in Find & Replace
         * This is regular Windows Search Patterns - *NO minimatch*
-		* v3: supports multiple input lines and minimatching
     * Find RegEx:
         * The Regular Expression to **FIND** text
         * RegEx Groups (brackets) are used for the replace option

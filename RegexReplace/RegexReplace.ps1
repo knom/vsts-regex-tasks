@@ -1,42 +1,48 @@
 ﻿[CmdletBinding()]
 param(
-	[String]
-	$InputSearchPattern,
-	[String]
-	$FindRegex,
-	[String]
-	$ReplaceRegex,
-	[Bool]
-	$UseUTF8 = $true
+    [String]
+    $InputSearchPattern,
+    [String]
+    $FindRegex,
+    [String]
+    $ReplaceRegex,
+    [Bool]
+    $UseUTF8 = $true
 )
 
 Trace-VstsEnteringInvocation $MyInvocation
 try {
-	Import-VstsLocStrings "$PSScriptRoot\task.json"
+    Import-VstsLocStrings "$PSScriptRoot\task.json"
 
-	$inputSearchPattern = (Get-VstsInput -Name InputSearchPattern -Require)
+    $inputSearchPattern = (Get-VstsInput -Name InputSearchPattern -Require)
 	
-	Write-Host "Search Pattern is $inputSearchPattern"
+    Write-Host "Search Pattern is $inputSearchPattern"
 
-	$inputPaths =  $inputSearchPattern.Split("`n") | % { Find-VstsMatch -Pattern $_ }
+    $inputPaths = $inputSearchPattern.Split("`n") | ForEach-Object { Find-VstsMatch -Pattern $_ }
 
-	$findRegex = Get-VstsInput -Name FindRegex
-	$replaceRegex = Get-VstsInput -Name ReplaceRegex
+    $findRegex = Get-VstsInput -Name FindRegex -Require
+    $replaceRegex = Get-VstsInput -Name ReplaceRegex
 
-	Write-Host "Found $($inputPaths.length) files"
+    if (!$replaceRegex) {
+        replaceRegex = ""
+    }
+
+    Write-Host "Found $($inputPaths.length) files"
 	
-	Write-Host "Replacing $findRegex with $replaceRegex"
+    Write-Host "Replacing $findRegex with $replaceRegex"
 
-	foreach ($path in $inputPaths) {
-		Write-Host "...in file $path"
-		if ($UseUTF8) {
-			$text = Get-Content $path -Encoding UTF8
-			$text -replace $findRegex, $replaceRegex | Set-Content $path -Encoding UTF8
-		} else {
-			$text = Get-Content $path
-			$text -replace $findRegex, $replaceRegex | Set-Content $path
-		}
-	}
-} finally {
-	Trace-VstsLeavingInvocation $MyInvocation
+    foreach ($path in $inputPaths) {
+        Write-Host "...in file $path"
+        if ($UseUTF8) {
+            $text = Get-Content $path -Encoding UTF8
+            $text -replace $findRegex, $replaceRegex | Set-Content $path -Encoding UTF8
+        }
+        else {
+            $text = Get-Content $path
+            $text -replace $findRegex, $replaceRegex | Set-Content $path
+        }
+    }
+}
+finally {
+    Trace-VstsLeavingInvocation $MyInvocation
 }

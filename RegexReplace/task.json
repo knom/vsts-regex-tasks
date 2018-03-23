@@ -4,6 +4,7 @@
   "friendlyName": "RegEx Find & Replace",
   "description": "Find & Replace using Regular Expressions",
   "helpMarkDown": "[More Information](https://github.com/knom/vsts-regex-tasks/)",
+  "releaseNotes": "What's new in version 3.*<br />Multiple input search paths<br />Empty replace value<br />Minimatch support for search paths<br />UTF-8 Support<br/>Click [here](https://github.com/knom/vsts-regex-tasks/) for more Information.",
   "category": "Utility",
   "visibility": [
     "Build", 
@@ -24,7 +25,7 @@
     {
       "name": "InputSearchPattern",
       "type": "multiLine",
-      "label": "Search Path to Input Files",
+      "label": "Search Paths to Input Files",
       "defaultValue": "src\\**\\*.xml\n*.txt",
       "required": true,
       "helpMarkDown": "Supports multiple lines of minimatch patterns. [More Information](https://aka.ms/minimatchexamples)"
@@ -35,15 +36,15 @@
       "label": "Find RegEx",
       "defaultValue": "(.*)",
       "required": true,
-      "helpMarkDown": "The Regular Expression to find - using captures for replace."
+      "helpMarkDown": "The Regular Expression to find - use capture groups for replace. [More Information](https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference#grouping_constructs)"
     },
     {
       "name": "ReplaceRegex",
       "type": "string",
       "label": "Replace With",
       "defaultValue": "$1",
-      "required": true,
-      "helpMarkDown": "The expression to replace with (use $1, $2, .. for the captures)."
+      "required": false,
+      "helpMarkDown": "The expression to replace with (use $1, $2, .. for the capture groups from find)."
     },
     {
       "name": "UseUTF8",

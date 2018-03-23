@@ -7,7 +7,7 @@
   "targets": [{
     "id": "Microsoft.VisualStudio.Services"
   }],
-  "description": "A task for replacing REGULAR EXPRESSIONS in your files with variables and text in build and release pipelines.",
+  "description": "A task for replacing REGULAR EXPRESSIONS in your files with variables and text.",
   "public": true,
   "categories": [
     "Build and release"

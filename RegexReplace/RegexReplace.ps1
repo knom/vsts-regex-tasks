@@ -24,7 +24,7 @@ try {
     $replaceRegex = Get-VstsInput -Name ReplaceRegex
 
     if (!$replaceRegex) {
-        replaceRegex = ""
+        $replaceRegex = ""
     }
 
     Write-Host "Found $($inputPaths.length) files"

@@ -26,18 +26,22 @@ try {
     if (!$replaceRegex) {
         $replaceRegex = ""
     }
+	
+    $useUTF8 = Get-VstsInput -Name UseUTF8
 
-    Write-Host "Found $($inputPaths.length) files"
+    Write-Host "Found $(@($inputPaths).length) files"
 	
     Write-Host "Replacing $findRegex with $replaceRegex"
 
     foreach ($path in $inputPaths) {
         Write-Host "...in file $path"
-        if ($UseUTF8) {
+        if ($useUTF8 -eq $true) {
+            Write-Host "UTF8 Encoding"
             $text = Get-Content $path -Encoding UTF8
             $text -replace $findRegex, $replaceRegex | Set-Content $path -Encoding UTF8
         }
         else {
+            Write-Host "ASCII Encoding"
             $text = Get-Content $path
             $text -replace $findRegex, $replaceRegex | Set-Content $path
         }

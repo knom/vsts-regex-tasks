@@ -34,11 +34,11 @@ try {
     foreach ($path in $inputPaths) {
         Write-Host "...in file $path"
         if ($UseUTF8) {
-            $text = Get-Content $path -Encoding UTF8
+            $text = Get-Content $path -Encoding UTF8 -Raw
             $text -replace $findRegex, $replaceRegex | Set-Content $path -Encoding UTF8
         }
         else {
-            $text = Get-Content $path
+            $text = Get-Content $path -Raw
             $text -replace $findRegex, $replaceRegex | Set-Content $path
         }
     }

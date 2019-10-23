@@ -17,6 +17,8 @@ try {
     Import-VstsLocStrings "$PSScriptRoot\task.json"
 
     $inputSearchPattern = (Get-VstsInput -Name InputSearchPattern -Require)
+    $useUTF8 = Get-VstsInput -Name UseUTF8
+    $useRaw = Get-VstsInput -Name UseRAW
 	
     Write-Host "Search Pattern is $inputSearchPattern"
 
@@ -29,7 +31,7 @@ try {
         $replaceRegex = ""
     }
 
-    Write-Host "Found $($inputPaths.length) files"
+    Write-Host "Found $(@($inputPaths).length) files"
 	
     Write-Host "Replacing $findRegex with $replaceRegex"
 
@@ -37,15 +39,17 @@ try {
         Write-Host "...in file $path"
         $getContentCommand = "Get-Content $path"
         $setContentCommand = "Set-Content $path"
-        if ($UseUTF8) {
-            $getContentCommand = $getContentCommand + " -Encoding UTF8"
-            $setContentCommand = $setContentCommand + " -Encoding UTF8"
+        if ($useUTF8) {
+            Write-Host "UTF8 Encoding"
+            $getContentCommand += " -Encoding UTF8"
+            $setContentCommand += " -Encoding UTF8"
         }
-        if ($UseRAW) {
-            $getContentCommand = $getContentCommand + " -Raw"
+        if ($useRAW) {
+            $getContentCommand += " -Raw"
         }
-        $text = iex $getContentCommand
-        $text -replace $findRegex, $replaceRegex | iex $setContentCommand
+
+        $text = Invoke-Expression $getContentCommand
+        $text -replace $findRegex, $replaceRegex | Invoke-Expression $setContentCommand
     }
 }
 finally {

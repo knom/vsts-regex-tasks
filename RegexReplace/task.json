@@ -4,7 +4,7 @@
   "friendlyName": "RegEx Find & Replace",
   "description": "Find & Replace using Regular Expressions",
   "helpMarkDown": "[More Information](https://github.com/knom/vsts-regex-tasks/)",
-  "releaseNotes": "What's new in version 3.*<br />Multiple input search paths<br />Empty replace value<br />Minimatch support for search paths<br />UTF-8 Support<br/>Click [here](https://github.com/knom/vsts-regex-tasks/) for more Information.",
+  "releaseNotes": "What's new in version 3.*<br />Multiple input search paths<br />Empty replace value<br />Minimatch support for search paths<br />UTF-8 Support<br />-Raw when loading files<br/>Click [here](https://github.com/knom/vsts-regex-tasks/) for more Information.",
   "category": "Utility",
   "visibility": [
     "Build", 
@@ -13,7 +13,7 @@
   "author": "knom",
   "version": {
     "Major": 3,
-    "Minor": 0,
+    "Minor": 1,
     "Patch": 0
   },
   "demands": [
@@ -53,6 +53,14 @@
       "defaultValue": "true",
       "required": true,
       "helpMarkDown": "Reads and writes the files using UTF-8 Encoding; otherwise ASCII encoding is used."
+    },
+    {
+      "name": "UseRAW",
+      "type": "boolean",
+      "label": "Use -Raw when reading file",
+      "defaultValue": "true",
+      "required": true,
+      "helpMarkDown": "Reads the files using -Raw option. Requires Powershell version v3 or higher"
     }
   ],
   "instanceNameFormat": "RegEx Find & Replace",

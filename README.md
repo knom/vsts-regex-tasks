@@ -4,8 +4,9 @@ A task for replacing REGULAR EXPRESSIONS in your files with variables and text i
 
 ## Supported Platforms
 
-* Visual Studio Team Services
+* Azure DevOps - Pipelines
 * Team Foundation Server 2015 Update 3 and higher ([How to install extensions in TFS](https://www.visualstudio.com/en-us/docs/marketplace/get-tfs-extensions))
+* **Only Windows** - sorry, this is due to the lack of Powershell support of the underlying task FX platform :-(
 
 ## Usage
 
@@ -34,6 +35,10 @@ A task for replacing REGULAR EXPRESSIONS in your files with variables and text i
   * E.g. replace them with what was within the comment (comment it IN)
   
             $1
+* **New in v3**: UseRAW (default true):
+  * Whether to use RAW file read mode (might help with replace issues, such as newline)
+* **New in v3**: UseUTF8 (default true):
+  * Whether to read the file in UTF8 (otherwise in ASCII)
 
 ## License
 

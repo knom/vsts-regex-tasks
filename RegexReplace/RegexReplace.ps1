@@ -17,8 +17,8 @@ try {
     Import-VstsLocStrings "$PSScriptRoot\task.json"
 
     $inputSearchPattern = (Get-VstsInput -Name InputSearchPattern -Require)
-    $useUTF8 = Get-VstsInput -Name UseUTF8
-    $useRaw = Get-VstsInput -Name UseRAW
+    $useUTF8 = Get-VstsInput -Name UseUTF8 -AsBool -Require
+    $useRaw = Get-VstsInput -Name UseRAW -AsBool -Require
 	
     Write-Host "Search Pattern is $inputSearchPattern"
 
@@ -32,24 +32,35 @@ try {
     }
 
     Write-Host "Found $(@($inputPaths).length) files"
-	
-    Write-Host "Replacing $findRegex with $replaceRegex"
+    
+    $ext = "";
+    if ($useUTF8) {
+        $ext += "UTF8"
+    }
+    else {
+        $ext += "ASCII"
+    }
+    if ($useRaw) {
+        $ext += ", RAW"
+    }
+
+    Write-Host "Replacing $findRegex with $replaceRegex ($ext)"
 
     foreach ($path in $inputPaths) {
+        $setContentParams = @{ Path = $path }
+        $getContentParams = @{ Path = $path }
+
         Write-Host "...in file $path"
-        $getContentCommand = "Get-Content $path"
-        $setContentCommand = "Set-Content $path"
         if ($useUTF8) {
-            Write-Host "UTF8 Encoding"
-            $getContentCommand += " -Encoding UTF8"
-            $setContentCommand += " -Encoding UTF8"
+            $setContentParams.Encoding = "UTF8"
+            $getContentParams.Encoding = "UTF8"
         }
-        if ($useRAW) {
-            $getContentCommand += " -Raw"
+        if ($useRaw) {
+            $getContentParams.Raw = $true
         }
 
-        $text = Invoke-Expression $getContentCommand
-        $text -replace $findRegex, $replaceRegex | Invoke-Expression $setContentCommand
+        $text = Get-Content @getContentParams
+        $text -replace $findRegex, $replaceRegex | Set-Content @setContentParams
     }
 }
 finally {

@@ -47,7 +47,7 @@ try {
     Write-Host "Replacing $findRegex with $replaceRegex ($ext)"
 
     foreach ($path in $inputPaths) {
-        $setContentParams = @{ Path = $path }
+        $setContentParams = @{ Path = $path; NoNewLine = $true }
         $getContentParams = @{ Path = $path }
 
         Write-Host "...in file $path"

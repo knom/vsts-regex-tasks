@@ -1,7 +1,7 @@
 {
   "manifestVersion": 1,
   "id": "regexreplace-task",
-  "name": "RegexReplace Build Task",
+  "name": "RegexReplace Azure Pipelines Task",
   "version": "3.3.8",
   "publisher": "knom",
   "targets": [{

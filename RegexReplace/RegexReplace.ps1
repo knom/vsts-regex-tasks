@@ -16,6 +16,13 @@ Trace-VstsEnteringInvocation $MyInvocation
 try {
     Import-VstsLocStrings "$PSScriptRoot\task.json"
 
+    # Check Powershell Version
+    if ($PSVersionTable.PSCompatibleVersions -notcontains '4.0')
+    {
+        Write-VstsTaskError "This task requires Powershell 4.0 or later"
+        exit;
+    }
+
     $inputSearchPattern = (Get-VstsInput -Name InputSearchPattern -Require)
     $useUTF8 = Get-VstsInput -Name UseUTF8 -AsBool -Require
     $useRaw = Get-VstsInput -Name UseRAW -AsBool -Require
@@ -47,7 +54,14 @@ try {
     Write-Host "Replacing $findRegex with $replaceRegex ($ext)"
 
     foreach ($path in $inputPaths) {
-        $setContentParams = @{ Path = $path; NoNewLine = $true }
+        $setContentParams = @{ Path = $path; }
+
+        # NoNewline is only available in Powershell >= 5.0
+        if ($PSVersionTable.PSCompatibleVersions -contains '5.0')
+        {
+            $setContentParams.Add("NoNewline", $true);
+        }
+
         $getContentParams = @{ Path = $path }
 
         Write-Host "...in file $path"

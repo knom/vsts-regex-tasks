@@ -17,9 +17,9 @@ try {
     Import-VstsLocStrings "$PSScriptRoot\task.json"
 
     # Check Powershell Version
-    if ($PSVersionTable.PSCompatibleVersions -notcontains '4.0')
+    if ($PSVersionTable.PSCompatibleVersions -notcontains '3.0')
     {
-        Write-VstsTaskError "This task requires Powershell 4.0 or later"
+        Write-VstsSetResult -Result Failed -Message "This task requires Powershell 3.0 or later"
         exit;
     }
 

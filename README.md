@@ -7,6 +7,7 @@ A task for replacing REGULAR EXPRESSIONS in your files with variables and text i
 * Azure DevOps - Pipelines
 * Team Foundation Server 2015 Update 3 and higher ([How to install extensions in TFS](https://www.visualstudio.com/en-us/docs/marketplace/get-tfs-extensions))
 * **Only Windows** - sorry, this is due to the lack of Powershell support of the underlying task FX platform :-(
+* Build Agents w. Powershell 3.0 or higher
 
 ## Usage
 

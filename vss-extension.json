@@ -58,6 +58,9 @@
     },
     "issues": {
       "uri": "https://github.com/knom/vsts-regex-tasks/issues"
+    },
+    "privacypolicy": {
+      "uri": "https://github.com/knom/vsts-regex-tasks/blob/master/PRIVACY.md"
     }
   },
   "repository": {
